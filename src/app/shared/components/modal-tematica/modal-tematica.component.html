@@ -1,0 +1,71 @@
+<div class="modal">
+    <form class="modal__tematica scale-up-center" 
+          *ngIf="existenCategorias"
+          [formGroup]="tematicaForm"
+          (ngSubmit)="crearTematica()">
+        <div class="modal__header">
+            <span>Agregar temática</span>
+        </div>
+        <div class="modal__body">
+            <div class="tematica">
+                <span>Ingresa una temática</span>
+                <div class="input__group">
+                    <input required="" type="text" name="text" autocomplete="off" class="input" formControlName="nombre">
+                    <label class="user-label">temática</label>
+                </div>
+            </div>
+
+            <div class="contenido">
+                <span class="contenido">Seleccione imagen</span>
+                <input type="file" name="" id="" #fileInput id="fileInput" (change)="onFileSelected($event)" accept="image/*">
+                @if (!existeArchivo) {
+                    <label for="fileInput" class="file-upload-button">seleccione archivo</label>
+                } @else {
+                    <div class="archivo__seleccionado">
+                        <span>{{ nombreArchivo }}</span>
+                        <i class="bi bi-x-lg" (click)="removerSeleccion()"></i>
+                    </div>
+                }
+            </div>
+
+            <div class="categorias">
+                <div class="categorias__texto">
+                    <span class="titulo">Categorías</span>
+                    <span class="subtitulo">Selecciona entre las disponibles</span>
+                </div>
+                <div class="categorias__cards">
+                    <div class="card" *ngFor="let categoria of categoriasRes" (click)="accionCategorias(categoria.nombre)" [ngClass]="{'seleccionado': categorias.includes(categoria.nombre)}">
+                        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes(categoria.nombre) ? 'visible' : 'hidden'}"></i>
+                        <img [src]="categoria.icono" alt="">
+                        <span>{{ categoria.nombre | titlecase }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal__cta">
+            <button class="cancelar" (click)="modalService.toggleModalTematica()">Cancelar</button>
+            <button class="crear" type="submit">Continuar</button>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- <div class="categorias__cards">
+    <div class="card" (click)="accionCategorias('imagenes')" [ngClass]="{'seleccionado': categorias.includes('imagenes')}">
+        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes('imagenes') ? 'visible' : 'hidden'}"></i>
+        <img src="../../../../assets/image_icon_153794.png" alt="">
+        <span>Imágenes</span>
+    </div>
+    <div class="card" (click)="accionCategorias('videos')" [ngClass]="{'seleccionado': categorias.includes('videos')}">
+        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes('videos') ? 'visible' : 'hidden'}"></i>
+        <img src="../../../../assets/rect20780.png" alt="">
+        <span>Videos</span>
+    </div>
+    <div class="card" (click)="accionCategorias('texto')" [ngClass]="{'seleccionado': categorias.includes('texto')}">
+        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes('texto') ? 'visible' : 'hidden'}"></i>
+        <img src="../../../../assets/g45495.png" alt="">
+        <span>Texto</span>
+    </div>
+</div> -->

@@ -1,0 +1,216 @@
+.registro{
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.portada{
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgb(90,68,241);
+    background: linear-gradient(0deg, rgba(90,68,241,1) 0%, rgba(74,159,246,0.510329131652661) 62%);
+}
+
+.portada__logo{
+    width: 100%;
+    height: 20%;
+}
+
+.portada__logo img{
+    width: 50px;
+    height: auto;
+}
+
+.portada__texto{
+    width: 60%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.portada__span{
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+}
+
+.lorem{
+    color: white;
+}
+
+.portada__foot{
+    width: 100%;
+    height: 20%;
+}
+
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+
+.formulario{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.form__texto{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    /* border: 1px solid red; */
+}
+
+.titulo{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.parrafo{
+    font-size: 16px;
+    color: rgba( 128, 128, 128, 0.9);
+}
+
+/* ------------------------------------------------ */
+/* ------------------------------------------------ */
+
+.form__registro{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.input__group{
+
+}
+
+.input__group input{
+    width: 50%;
+}
+
+.usuario, .email{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.usuario span, .email span{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba( 128, 128, 128, 0.7);
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select span{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba( 128, 128, 128, 0.7);
+}
+
+.select select{
+    width: 50%;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba( 128, 128, 128, 0.3);
+    outline: none;
+}
+
+.form__cta{
+
+}
+
+.form__cta button{
+    width: 50%;
+    padding: 12px;
+    background-color: #7D7DF5;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: white;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ------------------------------------------------ */
+/* ------------------------------------------------ */
+
+.cuenta{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.cuenta span{
+    font-size: 16px;
+    color: gray;
+    font-weight: 500;
+}
+
+.cuenta a{
+    color: #5D4BF1;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+/* ------------------------------------------------ */
+/* ------------------------------------------------ */
+
+.input__group {
+    position: relative;
+   }
+   
+   .input {
+    border: solid 1.5px rgba( 128, 128, 128, 0.3);
+    border-radius: 7px;
+    background: none;
+    padding: 10px;
+    font-size: 1rem;
+    color: gray;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+   }
+   
+   .user-label {
+    position: absolute;
+    left: 15px;
+    color: #e8e8e8;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+   }
+   
+   .input:focus, input:valid {
+    outline: none;
+    border: 1.5px solid #5D4BF1;
+   }
+   
+   .input:focus ~ label, input:valid ~ label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: white;
+    padding: 0 .2em;
+    color: #5D4BF1;
+   }

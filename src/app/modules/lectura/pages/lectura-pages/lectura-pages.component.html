@@ -1,0 +1,44 @@
+<div class="lectura">
+    @if (contenido) {
+
+        <div class="archivo">
+            @if (tipoArchivo === 'imagenes') {
+                <div class="imagen">
+                    <img [src]="contenido.url" alt="">
+                </div>
+            } 
+            
+            @else if (tipoArchivo === 'videos') {
+                <iframe [src]="safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            }
+            
+            @else if (tipoArchivo === 'texto') {
+                <div class="fondo">
+                    <pre>{{ texto }}</pre>
+                </div>
+            }
+        </div>
+        
+        <div class="datos__archivo">
+            <div class="usuario">
+                <div class="avatar">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="usuario__datos">
+                    <span class="username">{{ contenido.creditos.username }}</span>
+                    <span class="email">{{ contenido.creditos.email }}
+                    </span>
+                </div>
+            </div>
+            <div class="titulo">
+                <span class="titulo__contenido">Título: {{ contenido.titulo }}</span>
+            </div>
+            <div class="descripcion">
+                <span class="desc">Descripción: {{ contenido.descripcion }}</span>
+            </div>
+            <div class="fecha">
+                <span class="fecha__contenido">{{ contenido.fechaCreacion | date:'mediumTime' }} - {{ contenido.fechaCreacion | date }}</span>
+            </div>
+        </div>
+    }
+</div>

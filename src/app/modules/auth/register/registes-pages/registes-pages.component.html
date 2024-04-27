@@ -1,0 +1,68 @@
+<div class="registro">
+    <div class="portada">
+        <div class="portada__logo">
+            <img src="../../../../../assets/images-Photoroom.png-Photoroom.png
+            " alt="">
+        </div>
+        <div class="portada__texto">
+            <span class="portada__span">Bienvenido a D Studio</span>
+            <span class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+        </div>
+        <div class="portada__foot"></div>
+    </div>
+    <div class="formulario">
+        <div class="form__texto">
+            <span class="titulo">Crea una nueva cuenta</span>
+            <span class="parrafo">Fácil y rápido</span>
+        </div>
+        <form class="form__registro" [formGroup]="registroForm" (ngSubmit)="registro()">
+            <div class="usuario">
+                <span>Ingresa un usuario</span>
+                <div class="input__group">
+                    <input required="" type="text" name="text" autocomplete="off" class="input" formControlName="username">
+                    <label class="user-label">usuario</label>
+                </div>
+            </div>
+            <div class="email">
+                <span>Ingresa un email</span>
+                <div class="input__group">
+                    <input required="" type="text" name="text" autocomplete="off" class="input" formControlName="email">
+                    <label class="user-label">email</label>
+                </div>
+            </div>
+            <div class="select">
+                <span>Selecciona una opción</span>
+                <select name="" id="" formControlName="role">
+                    <option value="">Seleccione</option>
+                    <option value="lector">Lector</option>
+                    <option value="creador">Creador</option>
+                </select>
+            </div>
+            <div class="form__cta">
+                <button type="submit">Crear cuenta</button>
+            </div>
+        </form>
+
+        <div class="cuenta">
+            <span>¿Ya tienes una cuenta?</span>
+            <a (click)="tieneCuenta()">Inicia sesión</a>
+        </div>
+    </div>
+</div>
+
+@if (hasErr) {
+    <div class="toast__component slide__right">
+        <div class="toast">
+            <div class="icono">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+            <div class="texto">
+                <span class="span__titulo">Ha ocurrido un error</span>
+                <span class="span__subtitulo">{{ errMsg }}</span>
+            </div>
+            <div class="cerrar" (click)="cerrarToast()">
+                <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>
+}

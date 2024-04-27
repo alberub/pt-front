@@ -1,0 +1,58 @@
+<div class="modal" *ngIf="existeContenido">
+    <form class="modal__editar scale-up-center" [formGroup]="editarForm" (ngSubmit)="editarContenido()">
+        <div class="modal__header">
+            <h4>Editar contenido</h4>
+        </div>
+        <div class="modal__body">
+            <div class="contenido">
+                <span class="titulo">Título</span>
+                <input type="text" formControlName="titulo">
+            </div>
+
+            <div class="contenido">
+                <span class="titulo">Descripción</span>
+                <input type="text" formControlName="desc">
+            </div>
+
+            <!-- <div class="contenido">
+                <span class="titulo">Categoría</span>
+                <select name="" id=""></select>
+            </div> -->
+
+            @if (!esVideo) {
+
+                <div class="contenido">
+                    <span class="contenido">Cambiar archivo</span>
+                    <input type="file" name="" id="" #fileInput id="fileInput" (change)="onFileSelected($event)" accept="image/*">
+                    @if (!existeArchivo) {
+                        <label for="fileInput" class="file-upload-button">selecciona</label>
+                    } @else {
+                        <div class="archivo__seleccionado">
+                            <span>{{ nombreArchivo }}</span>
+                            <i class="bi bi-x-lg" (click)="removerSeleccion()"></i>
+                        </div>
+                    }
+                </div>
+            }
+            @else {
+                <div class="contenido">
+                    <span class="titulo">Contenido</span>
+                    <input type="text" formControlName="contenido">
+                </div>
+            }
+
+
+
+            <!-- <div class="contenido">
+                <span class="titulo">Temática</span>
+                <select name="" id=""></select>
+            </div> -->
+
+        </div>
+
+        <div class="modal__cta">
+            <button class="cancelar" (click)="modalService.toggleModalEditar()">Cancelar</button>
+            <button class="actualizar" type="submit">Actualizar</button>
+        </div>
+    </form>
+</div>

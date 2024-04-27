@@ -1,0 +1,56 @@
+<div class="modal">
+    <div class="modal__contenido scale-up-center">
+
+        <div class="modal__header">
+            <span>Crear contenido</span>
+            <i class="bi bi-x-lg" (click)="toggleModal()"></i>
+        </div>
+        <form action="" [formGroup]="contenidoForm" class="formulario" (ngSubmit)="crearContenido()">
+
+            <div class="contenido">
+                <span>Título</span>
+                <input type="text" placeholder="título" formControlName="titulo">
+            </div>
+
+            <div class="contenido">
+                <span>Descripción</span>
+                <input type="text" placeholder="Descripción"formControlName="descripcion">
+            </div>
+
+            
+            @if (esVideo) {
+                <div class="contenido">
+                    <span>Video-url</span>
+                    <input type="text" placeholder="Url del vídeo"formControlName="url">
+                </div>
+            }
+
+            @if (!esVideo) {
+                @if (tempImg == null) {
+                <div class="archivo" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+                        <i class="bi bi-file-earmark-arrow-up"></i>                    
+                        <span>Arrastra y suelta aquí el archivo o <input type="file" #fileInput id="fileInput" (change)="onFileSelected($event)" [accept]="extension">
+                            <label for="fileInput" class="file-upload-button">selecciona</label>
+                        </span>
+                    </div>
+                }
+                @else {
+                    <div class="archivo__cargado scale-up-center">
+                        <div class="imagen__datos">
+                            <img [src]="tempImg" alt="">
+                            <span>{{ nombreArchivo | slice: 0: 20 }}</span>                        
+                        </div>
+                        <div class="quitar__imagen">
+                            <i class="bi bi-x" (click)="removerImagen()"></i>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="form__cta">                
+                <button [disabled]="contenidoForm.invalid" type="submit">Continuar <i class="bi bi-arrow-right"></i></button>
+            </div>
+
+        </form>
+    </div>
+</div>

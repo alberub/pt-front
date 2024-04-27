@@ -1,0 +1,74 @@
+<div class="home">
+    <header class="home__header">
+    </header>
+    <main class="home__practica">
+        <router-outlet></router-outlet>
+    </main>
+
+    <div class="sidebar__button" (click)="toggleSidebar()" [ngClass]="{'sidebar__mostrado': sidebarState == true, 'sidebar__oculto': sidebarState == false}">
+        <i class="bi bi-list"></i>
+    </div>
+    <div class="sidebar" [ngClass]="{'mostrar': sidebarState == true, 'ocultar': sidebarState == false}">
+
+        <div class="sidebar__section">
+            <div class="sidebar__header">
+                <img src="../../../../../assets/images-Photoroom.png-Photoroom.png" alt="">
+                <span>Tematicas</span>
+            </div>
+    
+            <div class="sidebar__menu">
+                <span class="span__titulo">MENU</span>
+                <div class="menu__component" [routerLink]="['/']">
+                    <i class="bi bi-house-door"></i>
+                    <span>Inicio</span>
+                </div>
+
+                <div class="menu__component" [routerLink]="['/admin']">
+                    <i class="bi bi-gear"></i>
+                    <span>Administrador</span>
+                </div>
+
+                <!-- <div class="menu__component" [routerLink]="['/admin']" *ngFor="let ruta of rutas">
+                    <i class="{{ ruta.icono }}"></i>
+                    <span>{{ ruta.ruta }}</span>
+                </div> -->
+            </div>            
+        </div>
+
+        <div class="sidebar__section">
+            <div class="sidebar__logout" (click)="logout()">
+                <span>Cerrar sesión</span>
+                <i class="bi bi-door-open"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- @if (modalService.modal) {
+    <app-modal-gestion></app-modal-gestion>
+} -->
+
+@if (mensaje.length > 0) {
+    <div class="toast__component slide__right">
+        <div class="toast">
+            <div class="icono">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="texto">
+                <!-- <span class="span__titulo">Gestión existosa</span> -->
+                <span class="span__subtitulo">{{ mensaje }}</span>
+            </div>
+            <div class="cerrar" (click)="cerrarToast()">
+                <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>
+}
+
+@if (modalService.modalGenerico) {
+    <app-modal-generico backColor="#D7F3E1" 
+                        color="green" 
+                        icono="bi bi-check-circle-fill"
+                        texto="El rol del usuario ha sido actualizado con éxito"
+                        titulo="Éxito"></app-modal-generico>
+}

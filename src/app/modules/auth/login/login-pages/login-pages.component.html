@@ -1,0 +1,45 @@
+<div class="modal">
+    <div class="modal__login">
+        <form class="form__registro" [formGroup]="loginForm" (ngSubmit)="login()">
+            <h4>Login</h4>
+            <div class="usuario">
+                <span>Ingresa un usuario</span>
+                <div class="input__group">
+                    <input required="" type="text" name="text" autocomplete="off" class="input" formControlName="username">
+                    <label class="user-label">usuario</label>
+                </div>
+            </div>
+            <div class="email">
+                <span>Ingresa un email</span>
+                <div class="input__group">
+                    <input required="" type="text" name="text" autocomplete="off" class="input" formControlName="email">
+                    <label class="user-label">email</label>
+                </div>
+            </div>
+            <div class="form__cta">
+                <button type="submit">Crear cuenta</button>
+            </div>
+        </form>
+
+        <div class="registro">
+            <span (click)="irRegistro()">Ir al registro</span>
+        </div>
+    </div>
+</div>
+
+@if (hasErr) {
+    <div class="toast__component slide__right">
+        <div class="toast">
+            <div class="icono">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+            <div class="texto">
+                <span class="span__titulo">Ha ocurrido un error</span>
+                <span class="span__subtitulo">{{ errMsg }}</span>
+            </div>
+            <div class="cerrar" (click)="cerrarToast()">
+                <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>
+}

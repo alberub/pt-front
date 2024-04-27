@@ -1,0 +1,136 @@
+.modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__login{
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.53);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.53);
+    box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.53);
+}
+
+.form__registro{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.input__group{
+}
+
+.input__group input{
+    width: 100%;
+}
+
+.usuario, .email{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.usuario span, .email span{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba( 128, 128, 128, 0.7);
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select span{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba( 128, 128, 128, 0.7);
+}
+
+.select select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba( 128, 128, 128, 0.3);
+    outline: none;
+}
+
+.form__cta{
+
+}
+
+.form__cta button{
+    width: 100%;
+    padding: 12px;
+    background-color: #7D7DF5;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: white;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.input__group {
+    position: relative;
+   }
+   
+   .input {
+    border: solid 1.5px rgba( 128, 128, 128, 0.3);
+    border-radius: 7px;
+    background: none;
+    padding: 10px;
+    font-size: 1rem;
+    color: gray;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+   }
+   
+   .user-label {
+    position: absolute;
+    left: 15px;
+    color: #e8e8e8;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+   }
+   
+   .input:focus, input:valid {
+    outline: none;
+    border: 1.5px solid #5D4BF1;
+   }
+   
+   .input:focus ~ label, input:valid ~ label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: white;
+    padding: 0 .2em;
+    color: #5D4BF1;
+   }
+
+.registro span{
+    font-size: 14px;
+    color: gray;
+}
+
+.registro span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+/* ------------------------------------------------ */
+

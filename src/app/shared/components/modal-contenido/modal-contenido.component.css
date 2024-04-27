@@ -1,0 +1,191 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( 0, 0, 0, 0.7);
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__contenido{
+    width: 400px;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal__header{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #7D7DF5;
+}
+
+.modal__header span{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.modal__header i{
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    display: block;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.modal__header i:hover{
+    background-color: black;
+    color: white;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contenido{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contenido span{
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba( 128, 128, 128, 0.9);
+}
+
+
+.contenido input{
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    border: 1px solid rgba( 128, 128, 128, 0.3);
+    outline: none;
+    border-radius: 4px;
+}
+
+.contenido select{
+    width: 100%;
+    height: 35px;
+    border-radius: 7px;
+    padding-left: 7px;
+    outline: none;
+    border: 1px solid rgba( 128, 128, 128, 0.3);
+}
+
+.archivo{
+    width: 100%;
+    height: 80px;
+    border: 2px dashed rgba( 128, 128, 128, 0.7);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.archivo i{
+    font-size: 20px;
+}
+
+.archivo span{
+    font-size: 12px;
+}
+
+#fileInput{
+    display: none;
+}
+
+.archivo.dragover {
+    background-color: #fbffff;
+    border: 2px solid #5FBDEF;
+}
+  
+label{
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.form__cta{
+    width: 100%;
+    margin-bottom: 10px;    
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form__cta button{
+    width: 50%;
+    height: 35px;
+    background-color: #7D7DF5;
+    border: #7D7DF5;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 7px;
+}
+
+.form__cta i{
+    margin-left: 5px;
+}
+
+.archivo__cargado{
+    width: 100%;
+    height: 80px;
+    border-radius: 7px;
+    border: 2px solid rgba( 128, 128, 128, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.imagen__datos{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.imagen__datos img{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.imagen__datos span{
+    font-size: 12px;
+    color: gray;
+}
+
+.quitar__imagen i{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.scale-up-center{
+    animation:scale-up-center 0.4s; 
+}
+
+@keyframes scale-up-center{ 
+    0%{transform:scale(.3)} 100%{transform:scale(1)} 
+}

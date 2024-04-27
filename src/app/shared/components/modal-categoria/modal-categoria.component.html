@@ -1,0 +1,39 @@
+<div class="modal">
+    <div class="modal__categoria scale-up-center">
+        <div class="modal__header">
+            <span>Categoría</span>
+        </div>
+
+        <form action="" [formGroup]="categoriaForm" (ngSubmit)="crearCategoria()">
+            <div class="modal__body">
+                <div class="contenido">
+                    <span class="contenido">Ingresar Categoría</span>
+                    <input type="text" placeholder="Categoría" class="input__text" formControlName="nombre">
+                </div>
+                <div class="contenido">
+                    <span class="contenido">Seleccione icono</span>
+                    <input type="file" name="" id="" #fileInput id="fileInput" (change)="onFileSelected($event)" accept="image/*">
+                    @if (!existeArchivo) {
+                        <label for="fileInput" class="file-upload-button">selecciona</label>
+                    } @else {
+                        <div class="archivo__seleccionado">
+                            <span>{{ nombreArchivo }}</span>
+                            <i class="bi bi-x-lg" (click)="removerSeleccion()"></i>
+                        </div>
+                    }
+                </div>
+                <div class="modal__cta">
+                    <button class="cancelar" (click)="modalService.toggleModalCategoria()">Cancelar</button>
+
+                    <button class="crear" 
+                            type="submit" 
+                            [disabled]="categoriaForm.invalid"
+                            [ngClass]="{'form__invalid': categoriaForm.invalid, 'form__valid': categoriaForm.valid && valid }"
+                            >
+                        Continuar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

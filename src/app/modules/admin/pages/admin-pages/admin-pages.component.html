@@ -1,0 +1,84 @@
+<div class="admin">
+
+    <div class="crear">
+        <div class="usuario__admin">
+            <div class="usuario__avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="usuario__datos">
+                <div class="nombre"><h3>Hola, Bryan</h3></div>
+                <span>Perfil: administrador</span>
+            </div>
+        </div>
+        <div class="crear__acciones">
+            <button class="tematica" (click)="modalService.toggleModalTematica()"><i class="bi bi-plus-lg"></i>Crear temática</button>
+            <button class="categoria" (click)="modalService.toggleModalCategoria()"><i class="bi bi-plus-lg"></i> Crear categoría</button>
+        </div>
+    </div>
+
+    <div class="usuarios">
+        <div class="table__component">
+            <section class="filters">
+                <h4>Control de usuarios</h4>
+                <span>Total de usuarios registrados</span>
+            </section>
+            <section class="table__contacts">
+                <div class="table__header">
+                    <div class="header__field"><span>Nombre</span></div>
+                    <div class="header__field"><span>Email</span></div>
+                    <div class="header__field"><span>Role</span></div>
+                    <div class="header__field"><span>Fecha creacion</span></div>
+                    <div class="header__field"><span>Acción</span></div>
+                </div>
+                <div class="data">
+                    @for (usuario of usuarios; track $index) {
+                        <div class="table__data">
+                            <div class="data__field"><span>{{ usuario.username }}</span></div>
+                            <div class="data__field"><span>{{ usuario.email }}</span></div>
+                            <div class="data__field">
+                                <select [(ngModel)]="usuario.role" selected>
+                                    <option [ngValue]="usuario.role">{{ usuario.role | titlecase }}</option>
+                                    <option *ngFor="let rol of rolesFiltrados(usuario.role)" [value]="rol.nombreRol">{{ rol.nombreRol | titlecase }}</option>
+                                </select>
+                            </div>
+                            <div class="data__field"><span>{{ usuario.fechaCreacion | date }}</span></div>
+                            <div class="data__field">
+                                <div class="acciones">                          
+                                    <i class="bi bi-check-circle-fill guardar" (click)="changeRole(usuario)"></i>
+                                    <i class="bi bi-trash2-fill borrar"></i>                                    
+                                </div>
+                            </div>
+                        </div>
+                    }                    
+                </div>   
+                <br>             
+            </section> 
+            <div class="margen"></div>  
+            <!-- <section class="pagination">
+                <div class="pages">
+                    <div class="pag__icon">
+                        <i class="bi bi-chevron-left" (click)="decrementarPagina()"></i>
+                    </div>
+        
+                    <div class="pag__conteo">
+                        <span>Página</span>
+                        <input type="text" [(ngModel)]="pagina" (change)="getUsuarios()">
+                        <span>de {{ totalPaginas }}</span>
+                    </div>
+        
+                    <div class="pag__icon">
+                        <i class="bi bi-chevron-right" (click)="incrementarPagina()"></i>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+    </div>
+</div>
+
+@if (modalService.modalTematica) {
+    <app-modal-tematica></app-modal-tematica>
+}
+
+@if (modalService.modalCategoria) {
+    <app-modal-categoria></app-modal-categoria>
+}

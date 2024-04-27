@@ -1,0 +1,116 @@
+<div class="tematica">
+    <div class="tematica__cuerpo">
+        <div class="tematica__header">
+            <div class="header__migas">
+                <span>Home / Temáticas</span>
+            </div>
+            <div class="header__buscar">
+                <span class="componente">Temáticas</span>
+                <div class="buscar">
+                    <input type="text" 
+                           placeholder="Buscar temática"
+                           (keyup)="buscarTematica(txtTermino.value)"
+                           #txtTermino>
+                    <i class="bi bi-search"></i>
+                </div>
+            </div>
+        </div>
+        <div class="tematicas__cards">
+            <div class="cards__titulo">
+                <span>Mira las disponibles</span>
+            </div>
+            <div class="cards__desc">
+                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae ex corporis debitis, sapiente in nobis, recusandae, temporibus repellat voluptas mollitia quam nisi! Incidunt aliquam, quae neque atque velit quibusdam error.</span>
+            </div>
+            <div class="cards">
+                <div class="card" *ngFor="let tematica of tematicas" (click)="seleccionarTematica(tematica)">
+                    <div class="card__imagen">
+                        <img [src]="tematica.portada" alt="">
+                    </div>
+                    <div class="card__nombre">
+                        <span class="nombre">{{ tematica.nombre | titlecase }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="tematica">
+    <div class="tematica__header">
+        <div class="tematica__buscador">
+            <input type="text" 
+                   placeholder="Buscar temática"
+                   (keyup)="buscarTematica(txtTermino.value)"
+                   #txtTermino>            
+            <i class="bi bi-search"></i>
+        </div>
+
+        <div class="agregar">
+            @if (mostrarBoton) {
+                <div class="agregar__cta" (click)="modalService.toggleModal()">
+                    <i class="bi bi-folder-plus"></i>
+                    <span>Agregar contenido</span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="tematicas">
+        <span class="titulo">Listado de {{ titulo }}</span>
+
+        @if (!tarjetaSeleccioanda) {
+            <div class="cards">
+                <div class="card" *ngFor="let tematica of tematicas" (click)="seleccionarTematica(tematica)">
+                    <div class="card__imagen">
+                        <img src="../../../../../assets/theme_7518549.png" alt="">
+                    </div>
+                    <div class="card__datos">
+                        <span>{{ tematica.nombre | titlecase }}</span>
+                    </div>
+                </div>
+            </div>
+        } 
+        @else if(tarjetaSeleccioanda && contenidos.length === 0) {
+            <div class="cards">
+                <div class="card" *ngFor="let categoria of categorias" (click)="seleccionarCategoria(categoria)">
+                    <div class="card__imagen">
+                        <img [src]="tematicaImg" alt="">
+                    </div>
+                    <div class="card__datos">
+                        <span>{{ categoria | titlecase }}</span>
+                    </div>
+                </div>
+            </div>
+        }
+        @else {
+            <div class="cards">
+                <div class="card" *ngFor="let contenido of contenidos">
+                    <div class="card__imagen">
+                        <img [src]="tematicaImg" alt="">
+                    </div>
+                    <div class="card__datos-contenido">
+                        <div class="datos">
+                            <span>Título: {{ contenido.titulo | titlecase }}</span>
+                            <span>Créditos: {{ contenido.creditos.username }}</span>
+                        </div>
+                        <div class="acciones">
+                            <i class="bi bi-pen actualizar" (click)="setContenido(contenido)"></i>
+                            <i class="bi bi-trash3 borrar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@if (modalService.modalEditar) {
+    <app-modal-editar></app-modal-editar>
+}
+
+
+@if (modalService.modalState) {
+    <app-modal-contenido></app-modal-contenido>
+} -->

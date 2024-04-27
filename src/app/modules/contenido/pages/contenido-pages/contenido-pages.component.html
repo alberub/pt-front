@@ -1,0 +1,54 @@
+<div class="contenido">
+    <div class="contenido__header">
+        <div class="contenido__buscador">
+            <input type="text" 
+                   placeholder="Buscar contenido"
+                   (keyup)="buscarContenido(txtTermino.value)"
+                   #txtTermino>
+            <i class="bi bi-search"></i>
+        </div>
+        <div class="agregar">
+            <div class="agregar__cta" (click)="modalService.toggleModal()">
+                <i class="bi bi-folder-plus"></i>
+                <span>Agregar contenido</span>
+            </div>
+        </div>
+    </div>
+    @if (contenidos.length > 0) {
+        <div class="contenido__cards">
+            <div class="card" *ngFor="let contenido of contenidos" (click)="verContenido(contenido)">
+                <div class="imagen">
+                    <img [src]="contenido.url" alt="">
+                </div>
+                <div class="datos">
+                    <div class="text">
+                        <span>Crédito: {{ contenido.creditos.username }}</span>
+                        <span>Título: {{ contenido.titulo }}</span>
+                    </div>
+                    <div class="acciones">
+                        <i class="bi bi-pen actualizar" (click)="setContenido(contenido)"></i>
+                        <i class="bi bi-trash3 borrar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    } @else {
+        <div class="vacio">
+            <div class="vacio__imagen">
+                <img src="../../../../../assets/Documents-amico.png" alt="">
+            </div>
+            <div class="vacio__texto">
+                <span class="titulo">No hay contenido para mostrar</span>
+                <span class="subtitulo">Agrega nuevo contenido como Creador</span>
+            </div>
+        </div>
+    }
+</div>
+
+@if (modalService.modalState) {
+    <app-modal-contenido></app-modal-contenido>
+}
+
+@if (modalService.modalEditar) {
+    <app-modal-editar></app-modal-editar>
+}

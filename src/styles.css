@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.scale-up-center{
+    animation:scale-up-center 0.4s; 
+}
+
+@keyframes scale-up-center{ 
+    0%{transform:scale(.3)} 100%{transform:scale(1)} 
+}
+
+
+
+.toast__component{
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    user-select: none;
+    z-index: 9;
+}
+
+.toast{
+    border-radius: 10px;
+    border: 2px solid red;
+    background-color: #FBEFEB;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icono, .cerrar{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.icono i{
+    color: red;
+    font-size: 32px;
+}
+
+.cerrar i{
+    color: black;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.span__titulo{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.span__subtitulo{
+    font-size: 12px;
+}
+
+.slide__right{
+    animation:slide__right 0.4s linear both
+}
+
+@keyframes slide__right{
+    0%{transform:translateX(0)}100%{transform:translateX(40px)}
+}
