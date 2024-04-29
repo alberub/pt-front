@@ -27,7 +27,6 @@ export class AdminPagesComponent implements OnInit {
   constructor(private categoriaService: CategoriasService, private usuarioService: UsuarioService, public modalService: ModalService) {}
 
   ngOnInit(): void {
-    // this.getCategorias();
     this.getUsuarios();
     this.getRoles();
   }
