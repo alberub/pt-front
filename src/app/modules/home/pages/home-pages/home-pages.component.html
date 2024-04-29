@@ -23,10 +23,12 @@
                     <span>Inicio</span>
                 </div>
 
-                <div class="menu__component" [routerLink]="['/admin']">
-                    <i class="bi bi-gear"></i>
-                    <span>Administrador</span>
-                </div>
+                @if (role === 'admin') {
+                    <div class="menu__component" [routerLink]="['/admin']">
+                        <i class="bi bi-gear"></i>
+                        <span>Administrador</span>
+                    </div>
+                }
 
                 <!-- <div class="menu__component" [routerLink]="['/admin']" *ngFor="let ruta of rutas">
                     <i class="{{ ruta.icono }}"></i>
@@ -65,10 +67,10 @@
     </div>
 }
 
-@if (modalService.modalGenerico) {
+<!-- @if (modalService.modalGenerico) {
     <app-modal-generico backColor="#D7F3E1" 
                         color="green" 
                         icono="bi bi-check-circle-fill"
                         texto="El rol del usuario ha sido actualizado con éxito"
                         titulo="Éxito"></app-modal-generico>
-}
+} -->

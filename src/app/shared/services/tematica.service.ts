@@ -16,7 +16,7 @@ export class TematicaService {
   constructor(private http: HttpClient) { }
 
   getTematicas(){
-    return this.http.get<ApiResponse>(`${url}/tematicas`)
+    return this.http.get<ApiResponse>(`${url}/tematicas/obtenerTematicas`)
       .pipe(
         map( res => {
           return res.data as Tematica[];
@@ -43,9 +43,9 @@ export class TematicaService {
   }
 
   getTematicaPorId(tematicaId: string){
-    return this.http.get<ApiResponse>(`${url}/tematicas/buscarPorId/${tematicaId}`)
+    return this.http.get<{ok: boolean, data: any}>(`${url}/tematicas/buscarPorId/${tematicaId}`)
       .pipe(
-        map( res => res.data[0])
+        map( res => res.data)
       )
   }
 

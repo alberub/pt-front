@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ModalGenericoComponent } from '../../../../shared/components/modal-generico/modal-generico.component';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { SocketService } from '../../../../shared/services/socket.service';
+import { UsuarioService } from '../../../../shared/services/usuario.service';
 
 @Component({
   selector: 'app-home-pages',
@@ -20,8 +21,22 @@ export class HomePagesComponent implements OnInit {
   private sub$: Subscription = new Subscription();
   rutas: any[] = [];
   mensaje: string = '';
+  role: string = "";
 
-  constructor(private router: Router, public modalService: ModalService, private socketService: SocketService) {}
+  constructor(private router: Router, 
+              public modalService: ModalService, 
+              private socketService: SocketService,
+              private usuarioService: UsuarioService
+            ) {
+              if (sessionStorage.getItem('token')) {
+                this.usuarioService.validaTokenUsuario()
+                  .subscribe( () => {
+                    if (this.usuarioService.usuario) {                
+                      this.role = this.usuarioService.usuario.role;
+                    }
+                  });
+              }
+            }
 
   ngOnInit(): void {
     this.socketService.socket.on('nuevo-contenido', (payload) => {
@@ -46,7 +61,6 @@ export class HomePagesComponent implements OnInit {
 
   eventoContenido(payload: any){
     const { data } = payload;
-    console.log(payload);
     this.mensaje = `El usuario ${data.creditos.username} ha agregado contenido a la categoría ${data.categoria.nombre} en la Temática ${data.tematica.nombre}.`;    
   }
 

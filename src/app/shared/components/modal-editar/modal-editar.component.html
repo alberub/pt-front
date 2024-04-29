@@ -23,7 +23,7 @@
 
                 <div class="contenido">
                     <span class="contenido">Cambiar archivo</span>
-                    <input type="file" name="" id="" #fileInput id="fileInput" (change)="onFileSelected($event)" accept="image/*">
+                    <input type="file" name="" id="" #fileInput id="fileInput" (change)="onFileSelected($event)" [accept]="accept">
                     @if (!existeArchivo) {
                         <label for="fileInput" class="file-upload-button">selecciona</label>
                     } @else {

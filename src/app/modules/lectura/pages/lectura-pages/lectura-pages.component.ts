@@ -37,8 +37,6 @@ export class LecturaPagesComponent implements OnInit {
   obtenerContenido(uid: string){
     this.contenidoService.getArchivoPorId(uid)
       .subscribe( (contenido: Contenido) => {
-        console.log(contenido);
-        
         this.contenido = contenido;     
         this.tipoArchivo = contenido.categoria.nombre;
         if (contenido.categoria.nombre === 'videos') {
@@ -65,8 +63,6 @@ export class LecturaPagesComponent implements OnInit {
   }
 
   getArchivoTexto(url: string){
-    console.log(url);
-    
     this.contenidoService.getArchivoTexto(url)
       .subscribe( res => {
         this.texto = res;

@@ -34,8 +34,7 @@ export class AdminPagesComponent implements OnInit {
 
   getCategorias(){
     this.categoriaService.getCategorias()
-      .subscribe( res => {  
-        // console.log(res);
+      .subscribe( res => {          
       })
   }
 
@@ -54,17 +53,11 @@ export class AdminPagesComponent implements OnInit {
   }
 
   changeRole(usuario: Usuario){
-    console.log(usuario);
-    
     this.actualizarUsuario(usuario);
   }
 
   rolesFiltrados(roleActual: string){
-    // console.log(roleActual);
-    
     return this.roles.filter( role => {
-      // console.log(role);
-      
       return role.nombreRol !== roleActual;
     });
   }

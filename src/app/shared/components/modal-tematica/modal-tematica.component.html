@@ -34,8 +34,8 @@
                     <span class="subtitulo">Selecciona entre las disponibles</span>
                 </div>
                 <div class="categorias__cards">
-                    <div class="card" *ngFor="let categoria of categoriasRes" (click)="accionCategorias(categoria.nombre)" [ngClass]="{'seleccionado': categorias.includes(categoria.nombre)}">
-                        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes(categoria.nombre) ? 'visible' : 'hidden'}"></i>
+                    <div class="card" *ngFor="let categoria of categoriasRes" (click)="accionCategorias(categoria.uid)" [ngClass]="{'seleccionado': categorias.includes(categoria.uid)}">
+                        <i class="bi bi-check-circle-fill" [ngStyle]="{'visibility': categorias.includes(categoria.uid) ? 'visible' : 'hidden'}"></i>
                         <img [src]="categoria.icono" alt="">
                         <span>{{ categoria.nombre | titlecase }}</span>
                     </div>

@@ -1,6 +1,6 @@
 export interface Tematica{
     nombre: string;
-    permite: string[];
+    permite: any[];
     portada: string;
     uid: string;
 }

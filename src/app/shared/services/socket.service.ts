@@ -12,7 +12,7 @@ export class SocketService {
     autoConnect: true, 
     withCredentials: true,
     'extraHeaders':{
-      'x-token': sessionStorage.getItem('token') || ''
+      'bearer': sessionStorage.getItem('token') || ''
     }
   });
 

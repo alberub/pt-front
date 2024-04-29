@@ -8,7 +8,9 @@
     width: 100%;
     height: 100%;
     /* border: 3px solid red; */
-    padding: 40px
+    padding: 40px;
+    background-color: white;
+    color: #c37272;
 }
 
 .contenido__header{
@@ -55,11 +57,14 @@
     background-color: white;
     border-radius: 10px;
     display: flex;
-    gap: 10px;
+    gap: 40px;
     flex-wrap: wrap;
     padding: 20px;    
 }
 
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+/* 
 .card{
     width: 200px;
     height: 200px;
@@ -90,8 +95,7 @@
     color: black;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* border: 1px solid red; */
+    justify-content: space-between;    
 }
 
 .text{
@@ -114,7 +118,95 @@
     background-color: aliceblue;
     text-align: center;
     cursor: pointer;
+} */
+
+.card{
+    width: 200px;
+    height: 220px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2);
 }
+
+.card:hover{
+}
+
+.card__imagen{
+    width: 100%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.card__imagen img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.card__texto{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 10px;
+}
+
+.card__texto .titulo{
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card__texto .creditos{
+    font-size: 12px;
+    color: rgb(84, 84, 226);
+    font-weight: 500;
+}
+
+.card__texto .desc{
+    font-size: 12px;
+    color: gray;
+}
+
+.card__texto .creditos .por{
+    color: black;
+}
+
+.acciones{
+    width: 100%;
+    height: 20px;    
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.acciones button{
+    width: max-content;
+    font-size: 11px;
+    padding: 0 5px;
+    /* background-color: transparent;
+    border: none; */
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.acciones .editar{
+    background-color: #7D7DF5;
+    color: white;
+}
+
+.acciones .eliminar{
+    background-color: gray;
+    color: white;
+}
+
+
+
 
 /* -------------------------------------------- */
 /* -------------------------------------------- */
@@ -150,6 +242,7 @@
 .vacio__texto .titulo{
     font-size: 20px;
     font-weight: 600;
+    color: black;
 }
 
 .vacio__texto .subtitulo{
@@ -180,4 +273,91 @@
     font-size: 16px;
     color: white;
     cursor: pointer;
+}
+
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+.modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    background-color: rgba( 0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__eliminar{
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.modal__header{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.modal__header i{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    text-align: center;
+    background-color: #FFE4E6;
+    color: red;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.modal__header .titulo{
+    font-size: 20px;
+    font-weight: 500;    
+}
+
+.modal__texto{
+    width: 100%;
+    height: auto;
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+}
+
+.modal__cta{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 35px;
+    gap: 20px;
+}
+
+.modal__cta button{
+    width: 50%;
+    height: 100%;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.modal__cta .cancela{
+    font-weight: 500;
+    color: gray;
+}
+
+.modal__cta .continua{
+    background-color: red;
+    color: white;
+    font-weight: 500;
 }

@@ -1,1 +1,25 @@
-<p>categorias-pages works!</p>
+<div class="categoria">
+    <div class="categoria__cuerpo">
+        <div class="categoria__header">
+            <div class="header__migas">
+                <span>Home / Temáticas / Categorías / {{ categoriaPertenece | titlecase }}</span>
+            </div>
+            <div class="header__buscar">
+                <span class="componente">Categorías</span>
+                <div class="buscar">                    
+                </div>
+            </div>
+        </div>
+        <div class="categorias__cards">
+            <div class="card" *ngFor="let categoria of categorias" (click)="irCategoria(categoria.categoria)">
+                <div class="imagen">
+                    <img [src]="tematica.portada" alt="">
+                </div>
+                <div class="texto">
+                    <!-- <span class="nombre">{{ categoria.categoria.nombre }}</span> -->
+                    <span class="conteo"> + {{ categoria.count }} {{ categoria.categoria.nombre }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

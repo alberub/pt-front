@@ -25,7 +25,7 @@ export class CategoriasService {
   }
 
   getCategorias(){
-    return this.http.get<ApiResponse>(`${url}/categorias`)
+    return this.http.get<ApiResponse>(`${url}/categorias/obtenerCategorias`)
       .pipe(        
         map( res => {
           return res.data as Array<Categoria>
@@ -38,20 +38,6 @@ export class CategoriasService {
     formData.append('icono', archivo);
     formData.append('nombre', nombre)
     return this.http.post<any>(`${url}/categorias/crearCategoria`, formData);
-  }
-
-  getCategoriaPorNombre(nombre: string){
-    return this.http.get<ApiResponse>(`${url}/categorias/obtenerPorNombre/${nombre}`)
-      .pipe(
-        map( res => res.data[0] as Categoria)
-      )
-  }
-
-  getCategoriaPorId(uid: string){
-    return this.http.get<ApiResponse>(`${url}/categorias/obtenerPorId/${uid}`)
-      .pipe(
-        map( res => res.data[0] as Categoria)
-      )
   }
 
 }

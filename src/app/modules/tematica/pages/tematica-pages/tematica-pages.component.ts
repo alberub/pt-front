@@ -13,6 +13,7 @@ import { NuevoContenido } from '../../../../core/interfaces/NuevoContenido.inter
 import { ModalEditarComponent } from '../../../../shared/components/modal-editar/modal-editar.component';
 import { Contenido } from '../../../../core/interfaces/Contenido.interface';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../../../shared/services/usuario.service';
 
 @Component({
   selector: 'app-tematica-pages',
@@ -28,11 +29,16 @@ export class TematicaPagesComponent implements OnInit, OnDestroy {
   private sub$: Subscription = new Subscription();
 
   constructor(public modalService: ModalService, 
-              private tematicaService: TematicaService, 
+              private tematicaService: TematicaService,
+              private usuarioService: UsuarioService,
               private router: Router) {}
 
   ngOnInit(): void {
     this.getTematicas();
+    if (sessionStorage.getItem('token')) {
+      this.usuarioService.validaTokenUsuario()
+        .subscribe()
+    }
   }
 
   getTematicas(){

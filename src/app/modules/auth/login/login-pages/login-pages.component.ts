@@ -38,13 +38,10 @@ export class LoginPagesComponent implements OnInit {
       }
 
       this.loginService.login(usuario)
-        .subscribe( res => {
-          console.log(res);     
-          sessionStorage.setItem('token', res.token);   
-          sessionStorage.setItem('userId', res.usuario.uid);
+        .subscribe( res => {  
+          sessionStorage.setItem('token', res.token);             
           this.router.navigateByUrl('')
         }, err => {
-          console.log(err.error.error);
           this.errMsg = err.error.error;
           this.hasErr = true;
         });

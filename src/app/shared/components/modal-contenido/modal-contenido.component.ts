@@ -9,6 +9,8 @@ import { ContenidoService } from '../../services/contenido.service';
 import { NuevoContenido } from '../../../core/interfaces/NuevoContenido.interface';
 import { SocketService } from '../../services/socket.service';
 import { Contenido } from '../../../core/interfaces/Contenido.interface';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-modal-contenido',
@@ -27,15 +29,23 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
   private imaTmp!: File | null;
   private subs:Subscription = new Subscription();
   tematicaId: string = "";
-  categoriaId: string = "";
-  archivoValido: string = "";
+  categoriaId: string = "";  
   extension: string = "";
+  accept: string = "";
   esVideo: boolean = false;
+  tipoContenido: string = "";
+  usuarioId: string = "";
 
   constructor(private modalService: ModalService, 
               private categoriaService: CategoriasService, 
               private contenidoService: ContenidoService,
-              private socketService: SocketService) {}
+              private usuarioService: UsuarioService,
+              private socketService: SocketService,
+              private route: ActivatedRoute) {
+                if (this.usuarioService.usuario) {
+                  this.usuarioId = usuarioService.usuario.uid;
+                }
+              }
 
   ngOnInit(): void {
 
@@ -49,30 +59,21 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
     this.categoriaId = sessionStorage.getItem('categoriaId')!;
     this.tematicaId = sessionStorage.getItem('tematicaId')!;
 
-    this.subs.add(
-      this.categoriaService.getMiObservable()
-        .subscribe( res => {
-          console.log(res);
-          
-          this.archivoValido = res;
-          this.asignarExtension(res);
-        })
-    );
-
-    this.categoriaService.getCategoriaPorId(this.categoriaId)
-      .subscribe( (categoria: Categoria) => {
-        if (categoria.nombre === 'videos') {
-          this.esVideo = true;
-        }
-      })
+    this.route.params
+    .subscribe( (res: any) => {   
+      this.tipoContenido = res.id;   
+      res.id === 'videos' ? this.esVideo = true : 
+      this.asignarExtension(res.id)
+    })
   }
 
   crearContenido(){
-    if (this.contenidoForm.valid) {
+    if (this.contenidoForm.valid && this.imaTmp != null) {
       const data: NuevoContenido = {
         titulo: this.contenidoForm.value.titulo,
         descripcion: this.contenidoForm.value.descripcion,
-        creditos: sessionStorage.getItem('userId')!,
+        // creditos: sessionStorage.getItem('userId')!,
+        creditos: this.usuarioId,
         categoria: this.categoriaId,
         tematica: this.tematicaId,
         video_url: this.contenidoForm.value.url,
@@ -84,25 +85,21 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
           this.modalService.toggleModal();
           this.socketService.socket.emit('contenido-creado', contenido );
         });
-    }
+    } 
   }
 
   getCategorias(){
     this.categoriaService.getCategorias()
       .subscribe( res => {
-        console.log(res);
         this.categorias = res;
       })
   }
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
-    console.log(file?.type);    
-    console.log(this.extension);
     
     const tipoArchivo = file?.type.split('/');
     const nombreCorto = tipoArchivo![0];
-    console.log(nombreCorto);
     
     if (nombreCorto != this.extension) {
       return;
@@ -119,6 +116,31 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
       }
       
     }
+  }
+
+  asignarExtension(tipo: string){
+
+    switch (tipo) {
+      case 'imagenes':
+        this.extension = "image";
+        this.accept = "image/*"
+        this.esVideo = false;
+        break;
+      
+      case 'texto':
+        this.extension = "text";
+        this.accept = "text/plain"
+        this.esVideo = false;
+        break;
+
+      case 'videos':
+        this.esVideo = true;
+        break;
+    
+      default:
+        break;
+    }
+
   }
 
   onDragLeave(event: Event) {
@@ -143,7 +165,6 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
     }
     if (files && files.length > 0) {
       const file = files[0];
-      console.log(file);
       this.existeArchivo = true;
       const size = Math.round(file.size / 1024).toString();
       this.nombreArchivo = file.name + ' - ' + size + ' KB';
@@ -154,29 +175,6 @@ export class ModalContenidoComponent implements OnInit, OnDestroy {
         this.tempImg = reader.result;
       }
     }
-  }
-
-  asignarExtension(tipo: string){
-
-    switch (tipo) {
-      case 'imagenes':
-        this.extension = "image";
-        this.esVideo = false;
-        break;
-      
-      case 'texto':
-        this.extension = "text";
-        this.esVideo = false;
-        break;
-
-      case 'videos':
-        this.esVideo = true;
-        break;
-    
-      default:
-        break;
-    }
-
   }
 
   removerImagen(){

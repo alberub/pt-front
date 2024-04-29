@@ -33,7 +33,7 @@ export class ContenidoService {
   }
 
   getContenido(categoria: string, tematica: string){
-    return this.http.get<ApiResponse>(`${url}/contenidos/${categoria}/${tematica}/desc`)
+    return this.http.get<ApiResponse>(`${url}/contenidos/obtener/${categoria}/${tematica}/desc`)
       .pipe(
         map( res => res.data as Contenido[])
       )
@@ -66,7 +66,7 @@ export class ContenidoService {
   }
 
   getContenidoIndividual(uid: string){
-    return this.http.get<{ok: boolean, data: any}>(`${url}/contenidos/${uid}`)
+    return this.http.get<{ok: boolean, data: any}>(`${url}/contenidos/obtenerContenidoIndividual/${uid}`)
       .pipe(
         map( res => res.data)
       )
@@ -89,6 +89,13 @@ export class ContenidoService {
 
   getArchivoTexto(urlArchivo: string){
     return this.http.post<string>(`${url}/contenidos/archivo/texto/consulta`, {'urlTexto': urlArchivo}, {responseType: 'text' as 'json'});
+  }
+
+  eliminarContenido(contenidoId: string){
+    return this.http.delete<{ok: boolean, data: Contenido}>(`${url}/contenidos/eliminar/${contenidoId}`)
+      .pipe(
+        map( res => res.data as Contenido)
+      )
   }
 
 }

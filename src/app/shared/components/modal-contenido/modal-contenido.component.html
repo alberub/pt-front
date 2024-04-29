@@ -20,16 +20,17 @@
             
             @if (esVideo) {
                 <div class="contenido">
-                    <span>Video-url</span>
+                    <span>Agrega la url del video</span>
                     <input type="text" placeholder="Url del vídeo"formControlName="url">
                 </div>
             }
 
             @if (!esVideo) {
                 @if (tempImg == null) {
+                <span class="span__agrega">Agrega {{ tipoContenido }}</span>
                 <div class="archivo" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
                         <i class="bi bi-file-earmark-arrow-up"></i>                    
-                        <span>Arrastra y suelta aquí el archivo o <input type="file" #fileInput id="fileInput" (change)="onFileSelected($event)" [accept]="extension">
+                        <span>Arrastra y suelta aquí el archivo o <input type="file" #fileInput id="fileInput" (change)="onFileSelected($event)" [accept]="accept">
                             <label for="fileInput" class="file-upload-button">selecciona</label>
                         </span>
                     </div>

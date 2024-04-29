@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalContenidoComponent } from '../../../../shared/components/modal-contenido/modal-contenido.component';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { ContenidoService } from '../../../../shared/services/contenido.service';
@@ -7,22 +7,40 @@ import { CommonModule } from '@angular/common';
 import { Subscription, debounceTime } from 'rxjs';
 import { ModalEditarComponent } from '../../../../shared/components/modal-editar/modal-editar.component';
 import { Router } from '@angular/router';
+import { ModalGenericoComponent } from '../../../../shared/components/modal-generico/modal-generico.component';
+import { UsuarioService } from '../../../../shared/services/usuario.service';
 
 @Component({
   selector: 'app-contenido-pages',
   standalone: true,
-  imports: [ModalContenidoComponent, CommonModule, ModalEditarComponent],
+  imports: [ModalContenidoComponent, CommonModule, ModalEditarComponent, ModalGenericoComponent],
   templateUrl: './contenido-pages.component.html',
   styleUrl: './contenido-pages.component.css'
 })
 export class ContenidoPagesComponent implements OnInit, OnDestroy {
 
+  contenidoId: string = "";
+
+  mostrarModal: boolean = false;
   contenidos: Contenido[] = [];
-  contenidoPorCategoria: Contenido[] = [];  
+  contenidoPorCategoria: Contenido[] = [];
+  role: string = "";
   private sub$: Subscription = new Subscription();
   private tematicaId: string = "";
   private categoriaId: string = "";
-  constructor(public modalService: ModalService, private contenidoService: ContenidoService, private router: Router) {}
+  constructor(public modalService: ModalService, 
+              private contenidoService: ContenidoService, 
+              private router: Router, 
+              private usuarioService: UsuarioService) {
+                if (sessionStorage.getItem('token')) {
+                  this.usuarioService.validaTokenUsuario()
+                    .subscribe( () => {
+                      if (this.usuarioService.usuario) {                
+                        this.role = this.usuarioService.usuario.role;
+                      }
+                    });
+                }
+              }
 
   ngOnInit(): void {
     this.categoriaId = sessionStorage.getItem('categoriaId')!;
@@ -52,7 +70,7 @@ export class ContenidoPagesComponent implements OnInit, OnDestroy {
       )
       .subscribe( (contenidos: Contenido[]) => {
         if (contenidos.length > 0) {
-          this.contenidos = contenidos;          
+          this.contenidos = contenidos;
         }
       })
   }
@@ -60,7 +78,6 @@ export class ContenidoPagesComponent implements OnInit, OnDestroy {
   getContenido(){
     this.contenidoService.getContenido(this.categoriaId, this.tematicaId)
       .subscribe( (contenido: Contenido[]) => {  
-        console.log(contenido);
         contenido.forEach( contenido => {
           if (contenido.url.startsWith('https://www.youtube.com/watch?v=')) {
             const idYouTube = this.extraerYoutubeId(contenido.url);
@@ -68,7 +85,6 @@ export class ContenidoPagesComponent implements OnInit, OnDestroy {
             contenido.url = urlYouTube!;        
           }
         });
-            
         this.contenidos = contenido;
         this.contenidoPorCategoria = contenido;
       })
@@ -81,12 +97,27 @@ export class ContenidoPagesComponent implements OnInit, OnDestroy {
   }
 
   setContenido(contenido: Contenido){
-    console.log(contenido);
-    
     this.contenidoService.contenidoAct$.next(contenido.uid);
     this.modalService.toggleModalEditar();
   }
 
+  eliminarContenido(contenidoId: string){
+    this.mostrarModal = true;
+    this.contenidoId = contenidoId;    
+  }
+
+  accionModalEliminar(continua: boolean){
+    if (continua) {
+        this.contenidoService.eliminarContenido(this.contenidoId)
+        .subscribe( res => {   
+          this.mostrarModal = false;          
+          this.getContenido();   
+        })
+    } else{
+      this.mostrarModal = false;
+      this.contenidoId = "";
+    }
+  }
   
   ngOnDestroy(): void {
     this.sub$.unsubscribe();

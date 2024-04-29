@@ -8,15 +8,17 @@
             <i class="bi bi-search"></i>
         </div>
         <div class="agregar">
-            <div class="agregar__cta" (click)="modalService.toggleModal()">
-                <i class="bi bi-folder-plus"></i>
-                <span>Agregar contenido</span>
-            </div>
+            @if (role === 'admin' || role === 'creador') {
+                <div class="agregar__cta" (click)="modalService.toggleModal()">
+                    <i class="bi bi-folder-plus"></i>
+                    <span>Agregar contenido</span>
+                </div>
+            }
         </div>
     </div>
     @if (contenidos.length > 0) {
         <div class="contenido__cards">
-            <div class="card" *ngFor="let contenido of contenidos" (click)="verContenido(contenido)">
+            <!-- <div class="card" *ngFor="let contenido of contenidos" (click)="verContenido(contenido)">
                 <div class="imagen">
                     <img [src]="contenido.url" alt="">
                 </div>
@@ -30,6 +32,23 @@
                         <i class="bi bi-trash3 borrar"></i>
                     </div>
                 </div>
+            </div> -->
+            <div class="card" *ngFor="let contenido of contenidos">
+                <div class="card__imagen" (click)="verContenido(contenido)">
+                    <img [src]="contenido.url" alt="">
+                </div>
+                <div class="card__texto">
+                    <span class="titulo">{{ contenido.titulo | slice: 0: 20 }}</span>
+                    <span class="desc">{{ contenido.descripcion |slice: 0: 20 }}</span>
+                    <span class="creditos"><span class="por">Por: </span> {{ contenido.creditos.username }}</span>
+                </div>
+                @if (role === 'admin') {
+                    <div class="acciones">
+                        <button class="eliminar" (click)="eliminarContenido(contenido.uid)">Eliminar</button>
+                        <button class="editar" (click)="setContenido(contenido)">Editar</button>
+                    </div>
+                }
+    
             </div>
         </div>
     } @else {
@@ -45,10 +64,36 @@
     }
 </div>
 
+@if (mostrarModal) {
+    <div class="modal">
+        <div class="modal__eliminar">
+            <div class="modal__header">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span class="titulo">¿Está seguro?</span>
+            </div>
+            <div class="modal__texto">
+                <span class="info">Esta acción es irreversible, los valores asociados a este contenido se perderan</span>
+            </div>
+            <div class="modal__cta">
+                <button class="cancela" (click)="accionModalEliminar(false)">Cancelar</button>
+                <button class="continua" (click)="accionModalEliminar(true)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+}
+
 @if (modalService.modalState) {
     <app-modal-contenido></app-modal-contenido>
 }
 
 @if (modalService.modalEditar) {
     <app-modal-editar></app-modal-editar>
+}
+
+@if (modalService.modalGenerico) {
+    <app-modal-generico backColor="#c37272"
+                        color="red" 
+                        icono="bi bi-exclamation-circle-fill"
+                        texto="Se ha eliminado el contenido"
+                        titulo="Eliminado"></app-modal-generico>
 }

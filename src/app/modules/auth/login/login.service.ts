@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Usuario } from '../../../core/interfaces/Usuario.interface';
+import { tap } from 'rxjs';
 
 const url = environment.url;
 

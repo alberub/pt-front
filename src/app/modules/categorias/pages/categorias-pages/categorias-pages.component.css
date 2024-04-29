@@ -1,0 +1,78 @@
+.categoria{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px;    
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: white;
+}
+
+.categoria__cuerpo{
+    width: 100%;
+    height: 100%;    
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.categoria__header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.header__migas{
+    font-size: 12px;
+}
+
+.header__buscar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.componente{
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.categorias__cards{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 40px;
+    justify-content: flex-start;
+}
+
+.card{
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba( 128,128, 128, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 7px;
+}
+
+.card .imagen{
+    width: 100%;
+    height: 80%;
+    border-bottom: 1px solid rgba( 128,128, 128, 0.3);
+}
+
+.imagen img{
+    width: 100%;
+    height: 100%;
+    object-fit:contain
+}
+
+.texto{
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+}

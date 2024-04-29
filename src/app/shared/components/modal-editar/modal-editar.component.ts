@@ -31,6 +31,8 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
   existeArchivo: boolean = false;
   uidContenido: string = "";
   private tempImg!: File | null;
+  extension: string = "";
+  accept: string = "";
 
   constructor(public modalService: ModalService, 
               private contenidoService: ContenidoService,
@@ -63,7 +65,6 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
       this.tempImg = file;
       this.nombreArchivo = file.name;
       this.existeArchivo = true;
-      console.log(file.type);
     }
   }
 
@@ -106,7 +107,7 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
     this.contenidoService.getContenidoIndividual(contenidoId)
       .subscribe( (contenido: any) => {        
         this.contenido = contenido;
-        console.log(contenido);
+        this.asignarExtension(contenido.categoria.nombre);
         this.existeContenido = true;
         this.uidContenido = contenido.uid;
         this.editarForm.get('titulo')?.setValue(this.contenido.titulo);
@@ -121,7 +122,6 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
   getCategorias(){
     this.categoriaService.getCategorias()
       .subscribe( res => {
-        console.log(res);
         this.categorias = res
       })
   }
@@ -129,7 +129,6 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
   getTematicas(){
     this.tematicaService.getTematicas()
       .subscribe( res => {
-        console.log(res);
         this.tematicas = res
       })
   }
@@ -138,6 +137,31 @@ export class ModalEditarComponent implements OnInit, OnDestroy {
     this.nombreArchivo = "";
     this.existeArchivo = false;
     this.tempImg = null;
+  }
+
+  asignarExtension(tipo: string){
+
+    switch (tipo) {
+      case 'imagenes':
+        this.extension = "image";
+        this.accept = "image/*"
+        this.esVideo = false;
+        break;
+      
+      case 'texto':
+        this.extension = "text";
+        this.accept = "text/plain"
+        this.esVideo = false;
+        break;
+
+      case 'videos':
+        this.esVideo = true;
+        break;
+    
+      default:
+        break;
+    }
+
   }
 
   ngOnDestroy(): void {

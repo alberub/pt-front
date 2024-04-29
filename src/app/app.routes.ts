@@ -7,6 +7,8 @@ import { AdminPagesComponent } from './modules/admin/pages/admin-pages/admin-pag
 import { ContenidoPagesComponent } from './modules/contenido/pages/contenido-pages/contenido-pages.component';
 import { LecturaPagesComponent } from './modules/lectura/pages/lectura-pages/lectura-pages.component';
 import { CategoriasPagesComponent } from './modules/categorias/pages/categorias-pages/categorias-pages.component';
+import { adminGuard } from './core/guards/admin.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -23,6 +25,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                // canActivate: [AuthGuard],
                 component: TematicaPagesComponent,               
             },
             {
@@ -30,15 +33,18 @@ export const routes: Routes = [
                 component: CategoriasPagesComponent,               
             },
             {
-                path: 'contenidos',
+                path: 'contenidos/:id',
+                // canActivate: [AuthGuard],
                 component: ContenidoPagesComponent,              
             },
             {
                 path: 'lectura/:id',
+                canActivate: [AuthGuard],
                 component: LecturaPagesComponent
             },
             {
                 path: 'admin',
+                canActivate: [adminGuard],
                 component: AdminPagesComponent
             }
         ]

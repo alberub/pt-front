@@ -32,6 +32,10 @@
     justify-content: space-between;
 }
 
+.header__migas{
+    font-size: 12px;
+}
+
 .componente{
     font-size: 28px;
     font-weight: 700;

@@ -21,8 +21,6 @@ export class RegistesPagesComponent implements OnInit {
   constructor(private router: Router, private registroService: RegisterService) {}
 
   ngOnInit(): void {
-    console.log('hola');
-    
     this.registroForm = new FormGroup({
       username: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -31,8 +29,6 @@ export class RegistesPagesComponent implements OnInit {
   }
 
   registro(){
-    console.log('vamos');
-    
     if (this.registroForm.valid) {
       const usuario: Usuario = {
         username: this.registroForm.value.username,

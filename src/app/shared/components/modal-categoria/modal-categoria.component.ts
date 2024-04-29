@@ -28,8 +28,6 @@ export class ModalCategoriaComponent implements OnInit{
   }
 
   crearCategoria(){
-    console.log(this.iconoImg);
-    
     if (this.categoriaForm.valid && this.iconoImg != null) {
       this.valid = true;
       const nombre = this.categoriaForm.value.nombre;
@@ -48,7 +46,6 @@ export class ModalCategoriaComponent implements OnInit{
       this.iconoImg = file;
       this.nombreArchivo = file.name;
       this.existeArchivo = true;
-      console.log(file.type);
     }
   }
 

@@ -44,15 +44,12 @@ export class ModalTematicaComponent implements OnInit {
       this.tempImg = file;
       this.nombreArchivo = file.name;
       this.existeArchivo = true;
-      console.log(this.tempImg);
-      
     }
   }
 
   crearTematica(){
 
     if (this.tematicaForm.valid && this.categorias.length > 0 && this.tempImg != null) {
-        console.log(this.categorias, this.tematicaForm.value.nombre);
         
         const tematica: NuevaTematica = {
           nombre: this.tematicaForm.value.nombre,
@@ -61,7 +58,6 @@ export class ModalTematicaComponent implements OnInit {
 
         this.tematicaService.crearTematica(tematica, this.tempImg!)
           .subscribe( res => {
-            console.log(res);
             this.modalService.toggleModalTematica();
           });
 
@@ -73,18 +69,15 @@ export class ModalTematicaComponent implements OnInit {
       this.categorias.push(categoria);      
     } else{
       const el = this.categorias.findIndex( el => el === categoria);
-      console.log(el);
       this.categorias.splice(el, 1);
     }   
-    console.log(this.categorias);
+
   }
 
   getCategorias(){
     this.categoriaService.getCategorias()
       .subscribe( (categorias: Array<Categoria>) => {
         if (categorias.length > 0) {
-          console.log(categorias);
-          
           this.categoriasRes = categorias;
           this.existenCategorias = true;
         }
@@ -94,9 +87,7 @@ export class ModalTematicaComponent implements OnInit {
   getTematicas(){
     this.tematicaService.getTematicas()
       .subscribe( (tematicas: Tematica[]) => {
-        console.log(tematicas);
         this.tematicas = tematicas;
-        // this.existenTematicas = true;
       })
   }
 
