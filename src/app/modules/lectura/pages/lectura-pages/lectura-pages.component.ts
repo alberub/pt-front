@@ -57,7 +57,7 @@ export class LecturaPagesComponent implements OnInit {
       const videoId = match[2];
       return `https://www.youtube.com/embed/${videoId}`;
     } else {
-      console.error('Error al extraer id de YouTube.');
+      console.error('Error al extraer identificador de YouTube.');
       return '';
     }
   }
